@@ -1,11 +1,11 @@
 {
   "name": "BlockChain",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Bitcoin Simulator",
+  "main": "networkNode.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon api.js"
+    "start": "nodemon --watch dev -e js dev/networkNode.js"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +18,14 @@
     "request-promise": "^4.2.6",
     "sha256": "^0.2.0",
     "uuid": "^8.3.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prince-7/BitcoinSimulator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prince-7/BitcoinSimulator/issues"
+  },
+  "homepage": "https://github.com/prince-7/BitcoinSimulator#readme"
 }

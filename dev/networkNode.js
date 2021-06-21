@@ -3,7 +3,6 @@ var app = express();
 const bodyParser = require('body-parser');
 const Blockchain = require('./blockchain');
 const uuid = require('uuid').v4;
-const port = process.argv[2];
 const rp = require('request-promise');
 
 const nodeAddress = uuid().split('-').join('');
@@ -233,6 +232,6 @@ app.get('/block-explorer', function(req,res) {
 	res.sendFile('./block-explorer/index.html', { root: __dirname });
 });
 
-app.listen(port , function() {
-	console.log(`Listening on port ${port}....`)
+app.listen(process.env.PORT || 3000 , function() {
+	console.log(`Listening on port ${process.env.PORT}....`)
 })
