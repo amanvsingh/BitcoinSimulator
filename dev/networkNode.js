@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const Blockchain = require('./blockchain');
 const uuid = require('uuid').v4;
 const rp = require('request-promise');
-
+const port = process.argv[2];
 const nodeAddress = uuid().split('-').join('');
 
 const bitcoin = new Blockchain();
@@ -166,7 +166,6 @@ app.get('/consensus', function(req, res){
 			method: 'GET',
 			json: true
 		};
-		
 		requestPromises.push(rp(requestOptions));
 	});
 
@@ -232,6 +231,6 @@ app.get('/block-explorer', function(req,res) {
 	res.sendFile('./block-explorer/index.html', { root: __dirname });
 });
 
-app.listen(process.env.PORT || 3000 , function() {
-	console.log(`Listening on port ${process.env.PORT}....`)
+app.listen(process.env.PORT || port , function() {
+	console.log(`Listening on port ${port}....`)
 })
