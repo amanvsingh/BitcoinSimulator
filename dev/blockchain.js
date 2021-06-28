@@ -8,7 +8,7 @@ class BlockChain {
 		this.pendingTransactions = [];
 
 		this.currentNodeUrl = currentNodeUrl;
-		this.networkNodes = ["https://fathomless-bayou-64600.herokuapp.com"];
+		this.networkNodes = ["https://secret-woodland-98467.herokuapp.com"];
 
 		this.createNewBlock(100, '0', '0');
 	}
