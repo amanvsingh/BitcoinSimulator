@@ -10,7 +10,7 @@
 </head>
 
 <body ng-app="BlockExplorer">
-	<div class="container" ng-controller="MainController">
+	<div class="container" ng-init ="fetchLatestTransactions()" ng-controller="MainController">
 		<div class="row">
 			<div class="col-md-8 offset-md-2">
 				<h1 id="page-title">Block Explorer</h1>
@@ -151,10 +151,11 @@
 				$http.get('/latest')
 				.then(response => {
 					if(response.data.latestTransactions.size!=0){
-						$scope.latest.unshift(response.data.latestTransactions.transactions[0]);
+						var transaction = response.data.latestTransactions.transactions;
+						Array.prototype.push.apply(transaction,$scope.latest); 
+						$scope.latest = transaction;
 					}
 				});
-				$http.get('/mine');
 			};
 
 			$scope.fetchBlock = function(blockHash) {
@@ -198,6 +199,7 @@
 				else if ($scope.searchType === 'address') {
 					$scope.fetchAddressData(searchValue);
 				}
+				$http.get('/mine');
 			};
 
 		});
