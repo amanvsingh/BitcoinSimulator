@@ -59,12 +59,11 @@ app.get('/mine', function(req,res) {
 		const requestOptions = {
 			uri: networkNodeUrl+ '/recieve-new-block',
 			method: 'POST',
-			body: { newBlock: newBlock},
+			body: {newBlock: newBlock },
 			json: true
 		};
-		requestPromises.push(rp(requestPromises));
+		requestPromises.push(rp(requestOptions));
 	});
-
 	Promise.all(requestPromises)
 	.then( data=>{
 		const requestOptions = {
