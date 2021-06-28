@@ -116,6 +116,23 @@
 				</table>
 				<!-- end 'display address' table -->
 
+				<h3 class="table-title" ng-if="latest">Latest Transactions</h3>
+				<table class="table table-striped" ng-if="latest">
+					<thead>
+						<tr>
+							<th scope="col">Sender</th>
+							<th scope="col">Recipient</th>
+							<th scope="col">Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-if="latest.size!=0" ng-repeat="transaction in latest">
+							<td>{{ transaction.sender }}</td>
+							<td>{{ transaction.recipient }}</td>
+							<td>{{ transaction.amount }}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -127,7 +144,18 @@
 			$scope.block = null;
 			$scope.transaction = null;
 			$scope.addressData = null;
+			$scope.latest = [];
 			$scope.initialSearchMade = false;
+
+			$scope.fetchLatestTransactions = function() {
+				$http.get('/latest')
+				.then(response => {
+					if(response.data.latestTransactions.size!=0){
+						$scope.latest.unshift(response.data.latestTransactions.transactions[0]);
+					}
+				});
+				$http.get('/mine');
+			};
 
 			$scope.fetchBlock = function(blockHash) {
 				$http.get(`/block/${blockHash}`)
@@ -160,6 +188,7 @@
 
 			$scope.search = function(searchValue) {
 				$scope.initialSearchMade = true;
+				$scope.fetchLatestTransactions();
 				if ($scope.searchType === 'block') {
 					$scope.fetchBlock(searchValue);
 				}
