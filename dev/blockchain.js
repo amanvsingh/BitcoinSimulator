@@ -6,10 +6,8 @@ class BlockChain {
 	constructor() {
 		this.chain = [];
 		this.pendingTransactions = [];
-
-		this.currentNodeUrl = currentNodeUrl;
-		this.networkNodes = ["https://secret-woodland-98467.herokuapp.com"];
-
+		this.currentNodeUrl = currentNodeUrl; 
+		this.networkNodes = ["http://secret-woodland-98467.herokuapp.com"];
 		this.createNewBlock(100, '0', '0');
 	}
 	createNewBlock(nonce, previousBlockHash, hash) {
@@ -91,20 +89,20 @@ class BlockChain {
 	}
 	getTransaction(transactionId) {
 		let correctBlock = null;
-		let correctTranscation = null;
+		let correctTransaction = null;
 		this.chain.forEach(block => {
 			block.transactions.forEach(transaction => {
 				if (transaction.transactionId === transactionId) {
-					correctTranscation = transaction;
+					correctTransaction = transaction;
 					correctBlock = block;
 				}
 			});
-		});
+		}); 
 
 		return {
 			transaction: correctTransaction,
 			block: correctBlock
-		};
+		}; 
 	}
 	getAddressData(address) {
 		const addressTransactions = [];
