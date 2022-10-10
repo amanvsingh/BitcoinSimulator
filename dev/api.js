@@ -1,12 +1,12 @@
 var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
-const Blockchain = require('./blockchain');
+const BlockChain = require('./blockchain');
 const uuid = require('uuid').v4;
 
 const nodeAddress = uuid().split('-').join('');
 
-const bitcoin = new Blockchain();
+const bitcoin = new BlockChain();
 
 
 app.use(bodyParser.json());
