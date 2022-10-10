@@ -7,7 +7,7 @@ An Interface to track the blocks, address, transcactions. [Link](https://fathoml
 ![image](https://user-images.githubusercontent.com/53997924/123775297-e1ac1f00-d8eb-11eb-979b-50ffe2ac6509.png)
 
 
-## The Structure of the blockchain is : -
+## The Structure of the blockchain is :-
 ### Blockchain class
 ```js
 class BlockChain {
